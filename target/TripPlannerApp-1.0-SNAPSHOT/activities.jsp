@@ -15,17 +15,37 @@
 
 <h2>Available Activities</h2>
 <div class="row">
-    <% for (int i = 1; i <= 6; i++) { %>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <img src="images/activity<%= i %>.jpg" class="card-img-top" alt="Activity <%= i %>">
-            <div class="card-body">
-                <h5 class="card-title">Activity <%= i %></h5>
-                <p class="card-text">Fun and exciting experience in a great location. $25</p>
+    <div class="row mt-4">
+        <h4>Featured Activities</h4>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="images/hiking.jpg" class="card-img-top" alt="Activity 1">
+                <div class="card-body">
+                    <h5 class="card-title">Hiking</h5>
+                    <p class="card-text">Great Western Trail Head<br>4333 Park Ave, Des Moines, IA 50321<br> $75/person.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="images/volley.jpg" class="card-img-top" alt="Activity 2">
+                <div class="card-body">
+                    <h5 class="card-title">Beach Volleyball</h5>
+                    <p class="card-text">Xtreme Beach Volleyball Club<br>750 SE Frontier Ave, Waukee, IA 50263<br> $30/person.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="images/snorkeling.jpg" class="card-img-top" alt="Activity 3">
+                <div class="card-body">
+                    <h5 class="card-title">Snorkeling</h5>
+                    <p class="card-text">Strac Scuba Shack<br>3821 6th Ave Unit C, Des Moines, IA 50313<br> $50/person.</p>
+                </div>
             </div>
         </div>
     </div>
-    <% } %>
+</div>
 </div>
 
 <h4 class="mt-5">Add or Update Activity</h4>
@@ -33,24 +53,20 @@
     <input type="hidden" name="id" value="<%= editActivity != null ? editActivity.getId() : "" %>">
     <div class="row g-2">
         <div class="col">
-            <select name="name" class="form-select" required>
-                <option value="">Select Activity</option>
-                <% for (int i = 1; i <= 6; i++) { %>
-                <option value="Activity <%= i %>" <%= editActivity != null && editActivity.getName().equals("Activity " + i) ? "selected" : "" %>>Activity <%= i %></option>
-                <% } %>
-            </select>
+            <input type="text" name="name" class="form-control" placeholder="Activity Name" value="<%= editActivity != null ? editActivity.getName() : "" %>" required>
         </div>
         <div class="col">
-            <select name="location" class="form-select" required>
-                <option value="">Select Location</option>
-                <% for (int i = 1; i <= 6; i++) { %>
-                <option value="Location <%= i %>" <%= editActivity != null && editActivity.getLocation().equals("Location " + i) ? "selected" : "" %>>Location <%= i %></option>
-                <% } %>
-            </select>
+            <input type="text" name="location" class="form-control" placeholder="Location" value="<%= editActivity != null ? editActivity.getLocation() : "" %>" required>
         </div>
-        <div class="col"><input type="number" step="0.01" name="price" class="form-control" placeholder="Price" value="<%= editActivity != null ? editActivity.getPrice() : "" %>" required></div>
-        <div class="col"><input type="text" name="description" class="form-control" placeholder="Description" value="<%= editActivity != null ? editActivity.getDescription() : "" %>" required></div>
-        <div class="col"><button type="submit" class="btn btn-primary"><%= editActivity != null ? "Update" : "Add" %> Activity</button></div>
+        <div class="col">
+            <input type="number" step="0.01" name="price" class="form-control" placeholder="Price" value="<%= editActivity != null ? editActivity.getPrice() : "" %>" required>
+        </div>
+        <div class="col">
+            <input type="text" name="description" class="form-control" placeholder="Description" value="<%= editActivity != null ? editActivity.getDescription() : "" %>" required>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary"><%= editActivity != null ? "Update" : "Add" %> Activity</button>
+        </div>
     </div>
 </form>
 
