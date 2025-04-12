@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Mar 29, 2025, 2:01:25 PM
-    Author     : Immaculate Okoruwa
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
