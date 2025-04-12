@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -20,10 +21,12 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
             response.sendRedirect("dashboard.jsp");
         } else {
-            request.setAttribute("errorMessage", "Invalid credentials");
+            // Set an error message for incorrect credentials
+            request.setAttribute("errorMessage", "Invalid username or password. Please try again.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
         }
     }
 }
+
 
