@@ -9,6 +9,14 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Create an Account</h2>
+        
+        <!-- Display error message if registration fails -->
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger">
+                <%= request.getAttribute("errorMessage") %>
+            </div>
+        <% } %>
+
         <form action="RegisterServlet" method="post" class="mt-3">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

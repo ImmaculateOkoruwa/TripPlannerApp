@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Mar 29, 2025, 2:03:24 PM
-    Author     : Immaculate Okoruwa
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +9,14 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Login to TripPlanner</h2>
+        
+        <!-- Display error message for failed login -->
+        <% if (request.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger">
+                <%= request.getAttribute("errorMessage") %>
+            </div>
+        <% } %>
+
         <form action="LoginServlet" method="post" class="mt-3">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -30,3 +32,4 @@
     </div>
 </body>
 </html>
+

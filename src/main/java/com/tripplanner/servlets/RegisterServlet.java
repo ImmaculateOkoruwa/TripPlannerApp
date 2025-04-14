@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class RegisterServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -19,10 +20,10 @@ public class RegisterServlet extends HttpServlet {
         if (userDAO.registerUser(user)) {
             response.sendRedirect("login.jsp");
         } else {
-            request.setAttribute("errorMessage", "Registration failed. Try again.");
+            // Set an error message for registration failure
+            request.setAttribute("errorMessage", "Registration failed. Please try again.");
             RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
             dispatcher.forward(request, response);
         }
     }
 }
-
