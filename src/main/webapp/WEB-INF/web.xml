@@ -50,7 +50,7 @@
         <servlet-name>ActivityServlet</servlet-name>
         <url-pattern>/ActivityServlet</url-pattern>
     </servlet-mapping>
-
+    
     <!-- Welcome File -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

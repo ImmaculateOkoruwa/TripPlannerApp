@@ -1,6 +1,7 @@
-<%@ page import="com.tripplanner.models.User" %>
-<%@ page session="true" %>
+<%@ page import="com.tripplanner.models.User" %> <!-- Import the User model -->
+<%@ page session="true" %> <!-- Enable session handling -->
 <%
+    // Check if user is logged in, if not redirect to login page
     User user = (User) session.getAttribute("user");
     if (user == null) {
         response.sendRedirect("login.jsp");
@@ -11,9 +12,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - TripPlanner</title>
+    <!-- Bootstrap CSS for responsive styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+<!-- Navigation bar with links to Hotels, Cars, Activities, and Logout -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">TripPlanner</a>
@@ -26,13 +30,17 @@
     </div>
 </nav>
 
+<!-- Main container -->
 <div class="container mt-4">
+    <!-- Welcome message for logged-in user -->
     <h3>Welcome, <%= user.getUsername() %>!</h3>
     <p>Select an option above to manage your trip details.</p>
 
-    <!-- Featured Hotels -->
+    <!-- Section: Featured Hotels -->
     <div class="row mt-4">
         <h4>Featured Hotels</h4>
+        
+        <!-- Hotel 1 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/dsmrd-exterior-0006.jpg" class="card-img-top" alt="Hotel 1">
@@ -42,6 +50,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Hotel 2 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/IA103exterior01_1.jpg" class="card-img-top" alt="Hotel 2">
@@ -51,6 +61,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Hotel 3 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/the-ac-hotel-des-moines-ia-1.jpg" class="card-img-top" alt="Hotel 3">
@@ -62,9 +74,11 @@
         </div>
     </div>
 
-    <!-- Featured Cars -->
+    <!-- Section: Featured Cars -->
     <div class="row mt-4">
         <h4>Featured Cars</h4>
+
+        <!-- Car 1 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/Corolla.jpg" class="card-img-top" alt="Car 1">
@@ -74,6 +88,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Car 2 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/Ford.jpg" class="card-img-top" alt="Car 2">
@@ -83,6 +99,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Car 3 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/Honda.jpg" class="card-img-top" alt="Car 3">
@@ -94,9 +112,11 @@
         </div>
     </div>
 
-    <!-- Featured Activities -->
+    <!-- Section: Featured Activities -->
     <div class="row mt-4">
         <h4>Featured Activities</h4>
+
+        <!-- Activity 1 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/hiking.jpg" class="card-img-top" alt="Activity 1">
@@ -106,6 +126,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Activity 2 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/volley.jpg" class="card-img-top" alt="Activity 2">
@@ -115,6 +137,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Activity 3 card -->
         <div class="col-md-4 mb-3">
             <div class="card">
                 <img src="images/snorkeling.jpg" class="card-img-top" alt="Activity 3">

@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/tripplanner"; // Updated database ID
-    private static final String USER = "root"; // Password is root
-    private static final String PASSWORD = "root"; // Updated password
+    private static final String USER = "root"; // Username is root
+    private static final String PASSWORD = "root"; // Update password
 
     // Private constructor to prevent instantiation
     private DBConnection() {}
