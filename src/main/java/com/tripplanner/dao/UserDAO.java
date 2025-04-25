@@ -7,12 +7,11 @@ import java.util.List;
 
 public class UserDAO {
 
-    // Register a new user
+    // Method to register a new user
     public boolean registerUser(User user) {
         String query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
-
             pst.setString(1, user.getUsername());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getEmail());
@@ -23,22 +22,23 @@ public class UserDAO {
         }
     }
 
-    // User Login
+    // Method to log in a user
     public User loginUser(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM users WHERE username = ?";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
-
             pst.setString(1, username);
-            pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new User(
-                    rs.getInt("id"),
-                    rs.getString("username"),
-                    rs.getString("password"),
-                    rs.getString("email")
-                );
+                String storedPassword = rs.getString("password");
+                if (password.equals(storedPassword)) {
+                    return new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        storedPassword,
+                        rs.getString("email")
+                    );
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,14 +46,13 @@ public class UserDAO {
         return null;
     }
 
-    // Get All Users
+    // Method to retrieve all users
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
         try (Connection con = DBConnection.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
-
             while (rs.next()) {
                 users.add(new User(
                     rs.getInt("id"),
@@ -66,5 +65,18 @@ public class UserDAO {
             e.printStackTrace();
         }
         return users;
+    }
+
+    // Method to delete a user by ID
+    public boolean deleteUser(int userId) {
+        String query = "DELETE FROM users WHERE id=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setInt(1, userId);
+            return pst.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

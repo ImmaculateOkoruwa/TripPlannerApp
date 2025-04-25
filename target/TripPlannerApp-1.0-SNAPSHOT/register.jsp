@@ -1,38 +1,35 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <!-- Set the content type and encoding for the page -->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Define character encoding for the page -->
-    <title>Register - TripPlanner</title> <!-- Title of the page -->
-    <!-- Bootstrap CSS for responsive design and styling -->
+    <meta charset="UTF-8">
+    <title>Register - TripPlanner</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Create an Account</h2> <!-- Heading for the registration form -->
+        <h2 class="text-center">Create an Account</h2>
 
-        <!-- Check if there is an error message passed by the servlet -->
         <% if (request.getAttribute("errorMessage") != null) { %>
-            <div class="alert alert-danger"> <!-- Display error message if present -->
+            <div class="alert alert-danger">
                 <%= request.getAttribute("errorMessage") %>
             </div>
         <% } %>
 
-        <!-- Registration form -->
-        <form action="RegisterServlet" method="post" class="mt-3"> <!-- POST to RegisterServlet to create a new user -->
+        <form action="RegisterServlet" method="post" class="mt-3" id="registerForm">
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label> 
-                <input type="text" name="username" class="form-control" required> 
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required minlength="3" maxlength="20" pattern="^[a-zA-Z0-9_]+$" title="Username must be 3-20 characters long and can only contain letters, numbers, and underscores.">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label> 
-                <input type="password" name="password" class="form-control" required> 
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required minlength="6" maxlength="20" title="Password must be 6-20 characters long.">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label> 
-                <input type="email" name="email" class="form-control" required> 
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required title="Please enter a valid email address.">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button> <!-- Submit button for registration -->
+            <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
 </body>
